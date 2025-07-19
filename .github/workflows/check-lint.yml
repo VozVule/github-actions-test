@@ -9,8 +9,6 @@ on:
 jobs:
   check-code-style:
     runs-on: ubuntu-latest
-    needs:
-      - build-and-test
 
     steps:
       - name: Checkout code
