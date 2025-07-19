@@ -16,7 +16,7 @@ class ArithmeticServiceTest {
     }
 
     @Test
-    fun failTest() {
+    fun checkInstanceTest() {
         val result = sut.getRandomNumberBasedOnTime()
         Assert.isInstanceOf(Number::class.java, result)
     }
