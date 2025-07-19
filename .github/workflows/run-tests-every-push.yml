@@ -33,7 +33,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Split test classes
         id: split-tests
-        uses: ../run-parallel-tests
+        uses: ./.github/actions/run-parallel-tests
         with:
           number-test-chunks: 2
 
