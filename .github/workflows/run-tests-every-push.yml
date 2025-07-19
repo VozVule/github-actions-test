@@ -26,3 +26,21 @@ jobs:
 
       - name: Run Maven build and build Unit tests
         run: mvn --batch-mode clean test
+
+  test-summary:
+    runs-on: ubuntu-latest
+    # This job must run even if the matrix jobs fail, to report the failure
+    if: always()
+    needs: build-and-test
+
+    steps:
+      - name: Report overall test status
+        run: |
+          # The 'needs' context contains the result of the dependent jobs.
+          # It will be 'success' only if ALL matrix jobs succeeded.
+          if [[ "${{ needs.build-and-test.result }}" == "success" ]]; then
+            echo "✅ All build and test jobs passed."
+          else
+            echo "❌ One or more build and test jobs failed."
+            exit 1
+          fi
