@@ -1,0 +1,18 @@
+name: Check-code-style
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-code-style:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check code styling
+        run: mvn --batch-mode checkstyle:check
