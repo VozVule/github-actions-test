@@ -9,15 +9,18 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java_version: [17, 21]
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Java SDK
+      - name: Setup Java SDK ${{ matrix.java_version }}
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: ${{ matrix.java_version }}
           distribution: 'temurin'
           cache: maven
 
