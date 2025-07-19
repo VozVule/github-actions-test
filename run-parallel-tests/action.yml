@@ -1,0 +1,21 @@
+name: "Split tests to run in parallel"
+description: "Takes in the number of chunks N = [1, 2] and spins up N parallel jobs and splits the tests accordingly"
+
+inputs:
+  number-test-chunks:
+    description: "Number of chunks that will split the total number of tests"
+    required: true
+
+outputs:
+  test-classes:
+    description: "JSON Array of all test classes"
+    value: ${{steps.set-tests.outputs.test-classes}}
+
+runs:
+  using: composite
+  steps:
+    - id: set-tests
+      shell: bash
+      run: |
+        # → hard‑code your two class names into a JSON array
+        echo "test-classes=[\"GithubactionsApplicationTests\",\"ArithmeticServiceTest\"]" >> $GITHUB_OUTPUT
