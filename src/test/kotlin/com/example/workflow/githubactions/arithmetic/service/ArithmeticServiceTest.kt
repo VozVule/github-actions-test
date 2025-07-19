@@ -14,4 +14,10 @@ class ArithmeticServiceTest {
         val result = sut.getRandomNumberBasedOnTime()
         Assert.isTrue(result != 0, "Good job")
     }
+
+    @Test
+    fun failTest() {
+        val result = sut.getRandomNumberBasedOnTime()
+        Assert.isNull(result, "Nein")
+    }
 }
